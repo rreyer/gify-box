@@ -5,6 +5,8 @@ cd src/client
 xset s off
 xset -dpms
 
+export PATH="$(pwd)/venv/bin:$PATH"
+
 # Start the program
 sudo DISPLAY=:0 python single_instance.py
 cd ../.. 
