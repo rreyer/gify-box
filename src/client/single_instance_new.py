@@ -71,10 +71,6 @@ PATH_OUTPUTFILEGIF = PATH_OUTPUT + 'round%06d.gif'
 OVERLAYIMAGE_SRC    = PATH_FILEPATH + 'media/logo_color.png'
 OVERLAYIMAGE_OFFSET = (30, 10)
 
-# Camera text annotations
-CAMERA_TEXTCOLOR = picamera.Color('white')
-CAMERA_TEXTBACKGROUNDCOLOR = picamera.Color('black')
-
 CAMERA_TEXTVAL_START          = 'Get %d poses ready & press the button'%PICTURE_COUNT
 CAMERA_TEXTVAL_STARTING1      = 'Taking Gif #%06d'
 CAMERA_TEXTVAL_STARTING2      = 'Let`s go!'
