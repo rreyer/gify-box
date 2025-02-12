@@ -6,6 +6,13 @@ This document describes the configuration of the server for the GifyBox.
 
 The server part uses PHP and a web server, normally Apache. We don't provide installation instructions here.
 
+Required apache setup:
+Add Server name to /etc/apache2/apache2.conf
+Set AllowOverride All for the /var/www directory at the bottom of apache2.conf
+Enable Rewrite Mod for Apache2 with a2enmod rewrite
+
+
+
 Install the following additional packages:
 
 * php-imagick
@@ -16,6 +23,7 @@ $ sudo apt update
 $ sudo apt install php-imagick imagemagick
 ```
 
+TODO: IMAGICK AKTIVIEREN! mit phpenmod imagick
 ## Install the Software
 
 Install the software from the GitHub repository.

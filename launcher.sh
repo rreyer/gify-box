@@ -5,10 +5,8 @@ cd src/client
 xset s off
 xset -dpms
 
-# Activate virtual environment
-source "./venv/bin/activate"
 
 # Start the program
-sudo DISPLAY=:0 python single_instance.py
+sudo DISPLAY=:0 ../../venv/bin/python single_instance.py
 cd ../.. 
 
