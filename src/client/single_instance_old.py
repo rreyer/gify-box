@@ -10,9 +10,8 @@ https://github.com/informatik-mannheim/gify-box
 import os
 from time import sleep
 from gpiozero import Button
-import os, random, picamera2, requests
-from picamera2 import Preview
-from rpi_ws281x import Adafruit_NeoPixel, Color
+import os, random, picamera, requests
+from rpi_ws281x import *
 from subprocess import Popen
 import sys, select
 import subprocess
@@ -21,12 +20,8 @@ import threading
 
 ### !! VAR DEFINITIONS !! ###
 
-# Web server upload script. Change this to your server's address
-WEBSERVER_URL = 'http://gify-box-server/upload.php'
-
-# Screen Resolution
-PREVIEW_WIDTH = 600
-PREVIEW_HEIGHT = 400
+# Web server upload script. Change this to yout server's address
+WEBSERVER_URL = 'http://gifybox.inno-space.de/upload.php'
 
 # LED strip configuration. #1 is at button, #2 at the camera
 LED_COUNT          = 8       # Number of LED pixels.
@@ -77,8 +72,8 @@ OVERLAYIMAGE_SRC    = PATH_FILEPATH + 'media/logo_color.png'
 OVERLAYIMAGE_OFFSET = (30, 10)
 
 # Camera text annotations
-#CAMERA_TEXTCOLOR = picamera2.Color('white')
-#CAMERA_TEXTBACKGROUNDCOLOR = picamera2.Color('black')
+CAMERA_TEXTCOLOR = picamera.Color('white')
+CAMERA_TEXTBACKGROUNDCOLOR = picamera.Color('black')
 
 CAMERA_TEXTVAL_START          = 'Get %d poses ready & press the button'%PICTURE_COUNT
 CAMERA_TEXTVAL_STARTING1      = 'Taking Gif #%06d'
@@ -133,7 +128,6 @@ def color_clear(strip_to_use, color):
 ### !! CAMERA FUNCTIONS !! ###
 
 def camera_print_text(camera_to_use, text):
-    return
     """
     Show a text on the camera picture.
 
@@ -172,9 +166,6 @@ def upload_and_print_qr(mround):
         print("printing user receipt with URL: %s" % str(r.text))
         at.print_qr_code(r.text)
 
-    if r.status_code == 500:
-        print(str(r.text))
-
 def keystroke_watchdog():
     """
     Function to be called in a separate thread.
@@ -195,21 +186,18 @@ def keystroke_watchdog():
 ### !! BUSINESS LOGIC START !! ###
 
 # start the camera
-camera = picamera2.Picamera2()
-
-config = camera.create_preview_configuration({"size": RESOLUTION})
+camera = picamera.PiCamera()
+camera.resolution = RESOLUTION
 #camera.rotation = 180
 
 # turn off that red camera led
-#camera.led = False
+camera.led = False
 
 # set camera annotation text color
-#camera.annotate_foreground = CAMERA_TEXTCOLOR
+camera.annotate_foreground = CAMERA_TEXTCOLOR
 
 # start the camera preview and show the ok color w/ animation
-camera.configure(config)
-camera.start_preview(Preview.QT, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
-camera.start()
+camera.start_preview()
 color_wipe(strip, COLOR_OK)
 camera_print_text(camera, CAMERA_TEXTVAL_START)
 
@@ -270,7 +258,7 @@ while True:
         # clear the text and take a picture
         camera_print_text(camera, False)
         filepath = PATH_OUTPUTFILE%(mround,frame)
-        camera.capture_file(filepath)
+        camera.capture(filepath, use_video_port=True)
 
         # add branding and scale down the image using graphicsmagick
         graphicsmagick  = "gm composite "
@@ -316,8 +304,7 @@ while True:
     sleep(REPLAY_WAIT)
 
     # start the camera preview and close the gif viewer
-    camera.start_preview(Preview.QT, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
-    camera.start()
+    camera.start_preview()
     p.terminate()
     p.wait()
 

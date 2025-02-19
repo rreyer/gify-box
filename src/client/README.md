@@ -84,6 +84,12 @@ $ sudo apt update
 $ sudo apt install build-essential git scons swig viewnior graphicsmagick
 ```
 
+Install opencv
+# only C++
+$ sudo apt-get install libopencv-dev
+# need Python also?
+$ sudo apt-get install python3-opencv
+
 Install the required Python packages:
 
 * qrcode

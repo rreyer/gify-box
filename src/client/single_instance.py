@@ -8,20 +8,27 @@ https://github.com/informatik-mannheim/gify-box
 """
 
 import os
+import cv2
 from time import sleep
 from gpiozero import Button
-import os, random, picamera, requests
-from rpi_ws281x import *
+import os, random, picamera2, requests
+from picamera2 import Preview
+from rpi_ws281x import Adafruit_NeoPixel, Color
 from subprocess import Popen
 import sys, select
 import subprocess
 import print_qr as at
 import threading
+import numpy as np
 
 ### !! VAR DEFINITIONS !! ###
 
-# Web server upload script. Change this to yout server's address
-WEBSERVER_URL = 'http://gifybox.inno-space.de/upload.php'
+# Web server upload script. Change this to your server's address
+WEBSERVER_URL = 'http://gify-box-server/upload.php'
+
+# Screen Resolution
+PREVIEW_WIDTH = 640
+PREVIEW_HEIGHT = 360
 
 # LED strip configuration. #1 is at button, #2 at the camera
 LED_COUNT          = 8       # Number of LED pixels.
@@ -72,8 +79,13 @@ OVERLAYIMAGE_SRC    = PATH_FILEPATH + 'media/logo_color.png'
 OVERLAYIMAGE_OFFSET = (30, 10)
 
 # Camera text annotations
-CAMERA_TEXTCOLOR = picamera.Color('white')
-CAMERA_TEXTBACKGROUNDCOLOR = picamera.Color('black')
+CAMERA_TEXTCOLOR = (255, 255, 255, 255)
+CAMERA_TEXTBACKGROUNDCOLOR = (0, 0, 0, 255)
+CAMERA_TEXTORIGIN = (0, 0)
+CAMERA_TEXTFONT = cv2.FONT_HERSHEY_SIMPLEX
+CAMERA_TEXTSCALE = 1
+CAMERA_TEXTTHICKNESS = 2
+
 
 CAMERA_TEXTVAL_START          = 'Get %d poses ready & press the button'%PICTURE_COUNT
 CAMERA_TEXTVAL_STARTING1      = 'Taking Gif #%06d'
@@ -128,19 +140,15 @@ def color_clear(strip_to_use, color):
 ### !! CAMERA FUNCTIONS !! ###
 
 def camera_print_text(camera_to_use, text):
-    """
-    Show a text on the camera picture.
-
-    :param camera_to_use: the camera to use
-    :param text: the text to diplay
-    """
-    if text:
-        camera_to_use.annotate_background = CAMERA_TEXTBACKGROUNDCOLOR
-        camera_to_use.annotate_text_size = 64
-        camera_to_use.annotate_text = ' ' + text + ' '
-    else:
-        camera_to_use.annotate_background = None
-        camera_to_use.annotate_text = ''
+    if not text:
+        text = ''
+    overlay = np.zeros((PREVIEW_WIDTH, PREVIEW_HEIGHT, 4), dtype=np.uint8)
+    text_size, _ = cv2.getTextSize(text, CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTTHICKNESS)
+    text_w, text_h = text_size
+    x, y = CAMERA_TEXTORIGIN
+    cv2.rectangle(overlay, CAMERA_TEXTORIGIN, (x + text_w, y + text_h), CAMERA_TEXTBACKGROUNDCOLOR, -1)
+    cv2.putText(overlay, text, (x, y + text_h + CAMERA_TEXTSCALE - 1), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
+    camera_to_use.set_overlay(overlay)
 
 ### !! WEBSERVER AND QR CODE !! ###
 def upload_and_print_qr(mround):
@@ -166,6 +174,9 @@ def upload_and_print_qr(mround):
         print("printing user receipt with URL: %s" % str(r.text))
         at.print_qr_code(r.text)
 
+    if r.status_code == 500:
+        print(str(r.text))
+
 def keystroke_watchdog():
     """
     Function to be called in a separate thread.
@@ -186,18 +197,21 @@ def keystroke_watchdog():
 ### !! BUSINESS LOGIC START !! ###
 
 # start the camera
-camera = picamera.PiCamera()
-camera.resolution = RESOLUTION
+camera = picamera2.Picamera2()
+
+config = camera.create_preview_configuration({"size": RESOLUTION})
 #camera.rotation = 180
 
 # turn off that red camera led
-camera.led = False
+#camera.led = False
 
 # set camera annotation text color
-camera.annotate_foreground = CAMERA_TEXTCOLOR
+#camera.annotate_foreground = CAMERA_TEXTCOLOR
 
 # start the camera preview and show the ok color w/ animation
-camera.start_preview()
+camera.configure(config)
+camera.start_preview(Preview.QT, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
+camera.start()
 color_wipe(strip, COLOR_OK)
 camera_print_text(camera, CAMERA_TEXTVAL_START)
 
@@ -258,7 +272,7 @@ while True:
         # clear the text and take a picture
         camera_print_text(camera, False)
         filepath = PATH_OUTPUTFILE%(mround,frame)
-        camera.capture(filepath, use_video_port=True)
+        camera.capture_file(filepath)
 
         # add branding and scale down the image using graphicsmagick
         graphicsmagick  = "gm composite "
@@ -304,7 +318,8 @@ while True:
     sleep(REPLAY_WAIT)
 
     # start the camera preview and close the gif viewer
-    camera.start_preview()
+    camera.start_preview(Preview.QT, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
+    camera.start()
     p.terminate()
     p.wait()
 
