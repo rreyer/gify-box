@@ -10,15 +10,15 @@ PREVIEW_HEIGHT = 480
 
 CAMERA_TEXTCOLOR = (255, 255, 255, 255)
 CAMERA_TEXTBACKGROUNDCOLOR = (0, 0, 0, 255)
-CAMERA_TEXTORIGIN = (0, 30)
-CAMERA_TEXTFONT = cv2.FONT_HERSHEY_SIMPLEX
-CAMERA_TEXTSCALE = 1
+CAMERA_TEXTORIGIN = (50, 50)
+CAMERA_TEXTFONT = cv2.FONT_HERSHEY_PLAIN
+CAMERA_TEXTSCALE = 2
 CAMERA_TEXTTHICKNESS = 2
 
 
 picam2 = Picamera2()
-picam2.configure(picam2.create_preview_configuration())
-picam2.start_preview(Preview.QT)
+picam2.configure(picam2.create_preview_configuration(main={"size": (640, 480)}))
+picam2.start_preview(Preview.QTGL)
 picam2.start()
 time.sleep(1)
 
@@ -33,8 +33,8 @@ def camera_print_text(camera_to_use, text):
     cv2.putText(overlay, text, CAMERA_TEXTORIGIN, CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
     camera_to_use.set_overlay(overlay)
 
-for time_left in range(10, 0, -1):
-    text = f"{time_left} sec"
+for time_left in range(3, 0, -1):
+    text = f"Hallo Hallo {time_left} sec"
     camera_print_text(picam2, text)
     time.sleep(1)
 

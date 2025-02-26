@@ -79,22 +79,22 @@ OVERLAYIMAGE_SRC    = PATH_FILEPATH + 'media/logo_color.png'
 OVERLAYIMAGE_OFFSET = (30, 10)
 
 # Camera text annotations
-CAMERA_TEXTCOLOR = (255, 255, 255, 255)
+CAMERA_TEXTCOLOR = (0, 0, 0, 255)
 CAMERA_TEXTBACKGROUNDCOLOR = (0, 0, 0, 255)
-CAMERA_TEXTORIGIN = (0, 0)
-CAMERA_TEXTFONT = cv2.FONT_HERSHEY_SIMPLEX
-CAMERA_TEXTSCALE = 1
+CAMERA_TEXTORIGIN = (0, 30)
+CAMERA_TEXTFONT = cv2.FONT_HERSHEY_PLAIN
+CAMERA_TEXTSCALE = 2
 CAMERA_TEXTTHICKNESS = 2
 
 
-CAMERA_TEXTVAL_START          = 'Get %d poses ready & press the button'%PICTURE_COUNT
+CAMERA_TEXTVAL_START          = 'Get %d poses ready &\n press the button'%PICTURE_COUNT
 CAMERA_TEXTVAL_STARTING1      = 'Taking Gif #%06d'
 CAMERA_TEXTVAL_STARTING2      = 'Let`s go!'
 CAMERA_TEXTVAL_STARTING3      = '3...'
 CAMERA_TEXTVAL_STARTING4      = '2...'
 CAMERA_TEXTVAL_STARTING5      = '1...'
 CAMERA_TEXTVAL_PICINFORMATION = 'Taking picture #%d'
-CAMERA_TEXTVAL_PROCESSING     = 'Stitching your photos together. Please wait :)'
+CAMERA_TEXTVAL_PROCESSING     = 'Stitching your photos together.\n Please wait :)'
 CAMERA_TEXTVAL_PROCESSINGDONE = 'Almost there'
 CAMERA_TEXTVAL_GOODBYE        = 'It was great having you here!'
 
@@ -146,7 +146,7 @@ def camera_print_text(camera_to_use, text):
     text_size, _ = cv2.getTextSize(text, CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTTHICKNESS)
     text_w, text_h = text_size
     x, y = CAMERA_TEXTORIGIN
-    cv2.rectangle(overlay, CAMERA_TEXTORIGIN, (x + text_w, y + text_h), CAMERA_TEXTBACKGROUNDCOLOR, -1)
+    #cv2.rectangle(overlay, CAMERA_TEXTORIGIN, (x + text_w, y + text_h), CAMERA_TEXTBACKGROUNDCOLOR, -1)
     cv2.putText(overlay, text, (x, y + text_h + CAMERA_TEXTSCALE - 1), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
     camera_to_use.set_overlay(overlay)
 
