@@ -67,8 +67,7 @@ console=tty1 root=PARTUUID=e8fef0a8-02 rootfstype=ext4 fsck.repair=yes rootwait 
 
 Please keep in mind that you should not copy this line directly into your `cmdline.txt` because it contains information about the boot device. This may render your Raspberry PI unusable.
 
-
-## Install additional packages
+## Install additional system packages
 
 Install the following packages:
 
@@ -90,21 +89,6 @@ $ sudo apt-get install libopencv-dev
 # need Python also?
 $ sudo apt-get install python3-opencv
 
-Install the required Python packages:
-
-* qrcode
-* imagio
-* pyserial
-* requests
-* Pillow
-* rpi_ws281x
-
-
-```console
-$ sudo pip install qrcode[pil] imageio pyserial requests Pillow rpi_ws281x
-```
-
-
 ## Install the GifyBox software
 
 Install the software from the GitHub repository.
@@ -114,9 +98,34 @@ $ cd
 $ git clone https://github.com/informatik-mannheim/gify-box.git
 ```
 
-The software client must be run as *root* to have access to the hardware, therefore you can use the starter script in the main directory of the project. Although, it is for the client only, we placed it there to make running the client as easy as possible.
+## Setup the python virtual environment
+Navigate into the cloned gify-box directory.
+Create the virtual environment:
+```console
+python -m --system-site-packages venv venv 
+```
 
-Start the software on the box:
+Activate the virtual environment:
+```console
+source venv/bin/activate
+```
+
+
+## Install the required Python packages:
+
+* qrcode
+* imagio
+* pyserial
+* requests
+* Pillow
+* rpi_ws281x
+
+```console
+$ pip install qrcode[pil] imageio pyserial requests Pillow rpi_ws281x
+```
+
+## Start the software on the box:
+The software client must be run as *root* to have access to the hardware, therefore you can use the starter script in the main directory of the project. Although, it is for the client only, we placed it there to make running the client as easy as possible.
 
 ```
 $ cd gify-box
