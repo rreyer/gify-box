@@ -24,7 +24,7 @@ import numpy as np
 ### !! VAR DEFINITIONS !! ###
 
 # Web server upload script. Change this to your server's address
-WEBSERVER_URL = 'http://gify-box-server/upload.php'
+WEBSERVER_URL = 'http://gify.robin-reyer.de/upload.php'
 
 # Screen Resolution
 PREVIEW_WIDTH = 640
