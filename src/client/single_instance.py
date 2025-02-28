@@ -209,7 +209,7 @@ config = camera.create_preview_configuration({"size": RESOLUTION})
 
 # start the camera preview and show the ok color w/ animation
 camera.configure(config)
-camera.start_preview(Preview.QT, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
+camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
 camera.start()
 color_wipe(strip, COLOR_OK)
 camera_print_text(camera, CAMERA_TEXTVAL_START)
@@ -317,7 +317,7 @@ while True:
     sleep(REPLAY_WAIT)
 
     # start the camera preview and close the gif viewer
-    camera.start_preview(Preview.QT, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
+    camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
     camera.start()
     p.terminate()
     p.wait()
