@@ -86,7 +86,7 @@ CAMERA_TEXTSCALE = 1
 CAMERA_TEXTTHICKNESS = 1
 
 
-CAMERA_TEXTVAL_START          = 'Get %d poses ready & press the button & press start'%PICTURE_COUNT
+CAMERA_TEXTVAL_START          = 'Press the remote to start'%PICTURE_COUNT
 CAMERA_TEXTVAL_STARTING1      = 'Taking Gif #%06d'
 CAMERA_TEXTVAL_STARTING2      = 'Let`s go!'
 CAMERA_TEXTVAL_STARTING3      = '3...'
