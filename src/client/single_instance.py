@@ -26,9 +26,8 @@ import numpy as np
 # Web server upload script. Change this to your server's address
 WEBSERVER_URL = 'http://gify.robin-reyer.de/upload.php'
 
-# Screen Resolution
 PREVIEW_WIDTH = 640
-PREVIEW_HEIGHT = 480
+PREVIEW_HEIGHT = 480 # needs to be 4:3 for opencv text to work
 
 # LED strip configuration. #1 is at button, #2 at the camera
 LED_COUNT          = 8       # Number of LED pixels.
@@ -44,7 +43,7 @@ PINBTN = 23
 
 # Picture configuration
 PICTURE_COUNT   = 5
-RESOLUTION      = (1280, 960)
+RESOLUTION      = (1280, 960) # needs to be 4:3
 
 # Picture wait delays
 COMPLIMENT_WAIT = 0.8  # seconds
@@ -82,19 +81,19 @@ OVERLAYIMAGE_OFFSET = (30, 10)
 CAMERA_TEXTCOLOR = (0, 0, 0, 255)
 CAMERA_TEXTBACKGROUNDCOLOR = (0, 0, 0, 255)
 CAMERA_TEXTORIGIN = (0, 30)
-CAMERA_TEXTFONT = cv2.FONT_HERSHEY_PLAIN
+CAMERA_TEXTFONT = cv2.FONT_HERSHEY_DUPLEX
 CAMERA_TEXTSCALE = 1
-CAMERA_TEXTTHICKNESS = 2
+CAMERA_TEXTTHICKNESS = 1
 
 
-CAMERA_TEXTVAL_START          = 'Get %d poses ready &\n press the button'%PICTURE_COUNT
+CAMERA_TEXTVAL_START          = 'Get %d poses ready & press the button & press start'%PICTURE_COUNT
 CAMERA_TEXTVAL_STARTING1      = 'Taking Gif #%06d'
 CAMERA_TEXTVAL_STARTING2      = 'Let`s go!'
 CAMERA_TEXTVAL_STARTING3      = '3...'
 CAMERA_TEXTVAL_STARTING4      = '2...'
 CAMERA_TEXTVAL_STARTING5      = '1...'
 CAMERA_TEXTVAL_PICINFORMATION = 'Taking picture #%d'
-CAMERA_TEXTVAL_PROCESSING     = 'Stitching your photos together.\n Please wait :)'
+CAMERA_TEXTVAL_PROCESSING     = 'Stitching your photos together. Please wait :)'
 CAMERA_TEXTVAL_PROCESSINGDONE = 'Almost there'
 CAMERA_TEXTVAL_GOODBYE        = 'It was great having you here!'
 
