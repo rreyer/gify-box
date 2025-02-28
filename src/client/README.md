@@ -13,18 +13,6 @@ $ xrandr --output HDMI-1 --rotate inverted
 Afterwards you can persist the setting in the display settings of the user interface.
 
 
-## Enable the Camera
-
-If you use the standard Raspberry PI camera, you have to enable it in the configuration of the computer.
-
-Start the configuration program:
-
-```console
-$ sudo raspi-config
-```
-
-Open the *Interfacing Options* and enable the legacy camera.
-
 
 ## Enable Neopixel
 
@@ -80,13 +68,11 @@ Install the following packages:
 
 ```console
 $ sudo apt update
-$ sudo apt install build-essential git scons swig viewnior graphicsmagick
+$ sudo apt install build-essential git scons swig viewnior graphicsmagick libopencv-dev python3-opencv
 ```
 
 Install opencv
-# only C++
 $ sudo apt-get install libopencv-dev
-# need Python also?
 $ sudo apt-get install python3-opencv
 
 ## Install the GifyBox software
@@ -94,8 +80,9 @@ $ sudo apt-get install python3-opencv
 Install the software from the GitHub repository.
 
 ```console
-$ cd
+$ cd ~
 $ git clone https://github.com/informatik-mannheim/gify-box.git
+$ cd gify-box
 ```
 
 ## Setup the python virtual environment
