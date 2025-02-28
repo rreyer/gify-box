@@ -89,7 +89,7 @@ $ cd gify-box
 Navigate into the cloned gify-box directory.
 Create the virtual environment:
 ```console
-python -m --system-site-packages venv venv 
+python -m venv venv --system-site-packages 
 ```
 
 Activate the virtual environment:

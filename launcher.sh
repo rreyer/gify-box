@@ -1,5 +1,5 @@
 #!/bin/sh 
-cd ~/gify-box/src/client
+cd src/client
 
 # Disable screen saver and screen blanking
 xset s off
