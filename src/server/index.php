@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="de">
+<link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
