@@ -28,7 +28,7 @@ WEBSERVER_URL = 'http://gify.robin-reyer.de/upload.php'
 
 # Screen Resolution
 PREVIEW_WIDTH = 640
-PREVIEW_HEIGHT = 360
+PREVIEW_HEIGHT = 480
 
 # LED strip configuration. #1 is at button, #2 at the camera
 LED_COUNT          = 8       # Number of LED pixels.
@@ -44,7 +44,7 @@ PINBTN = 23
 
 # Picture configuration
 PICTURE_COUNT   = 5
-RESOLUTION      = (1280, 720)
+RESOLUTION      = (1280, 960)
 
 # Picture wait delays
 COMPLIMENT_WAIT = 0.8  # seconds
@@ -83,7 +83,7 @@ CAMERA_TEXTCOLOR = (0, 0, 0, 255)
 CAMERA_TEXTBACKGROUNDCOLOR = (0, 0, 0, 255)
 CAMERA_TEXTORIGIN = (0, 30)
 CAMERA_TEXTFONT = cv2.FONT_HERSHEY_PLAIN
-CAMERA_TEXTSCALE = 2
+CAMERA_TEXTSCALE = 1
 CAMERA_TEXTTHICKNESS = 2
 
 
