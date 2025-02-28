@@ -147,7 +147,7 @@ def camera_print_text(camera_to_use, text):
     text_w, text_h = text_size
     x, y = CAMERA_TEXTORIGIN
     #cv2.rectangle(overlay, CAMERA_TEXTORIGIN, (x + text_w, y + text_h), CAMERA_TEXTBACKGROUNDCOLOR, -1)
-    cv2.putText(overlay, text, (x, y + text_h + CAMERA_TEXTSCALE - 1), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
+    cv2.putText(overlay, text, (x, y + text_h + CAMERA_TEXTSCALE - 1), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS, cv2.LINE_AA)
     camera_to_use.set_overlay(overlay)
 
 ### !! WEBSERVER AND QR CODE !! ###
