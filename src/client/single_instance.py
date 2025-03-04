@@ -83,7 +83,7 @@ CAMERA_TEXTCOLOR = (0, 0, 0, 255)
 CAMERA_TEXTBACKGROUNDCOLOR = (255, 255, 255, 180)
 CAMERA_TEXTORIGIN = (0, 0)
 CAMERA_TEXTFONT = cv2.FONT_HERSHEY_COMPLEX_SMALL
-CAMERA_TEXTSCALE = 3
+CAMERA_TEXTSCALE = 2
 CAMERA_TEXTTHICKNESS = 1
 
 
@@ -147,7 +147,7 @@ def camera_print_text(camera_to_use, text):
     text_w, text_h = text_size
     x, y = CAMERA_TEXTORIGIN
     cv2.rectangle(overlay, CAMERA_TEXTORIGIN, (x + text_w, y + text_h), CAMERA_TEXTBACKGROUNDCOLOR, -1)
-    cv2.putText(overlay, text, (x, y + text_h + CAMERA_TEXTSCALE - 1), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS, cv2.LINE_AA)
+    cv2.putText(overlay, text, (x, y + text_h + CAMERA_TEXTSCALE - 1), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
     
     camera_to_use.set_overlay(overlay)
 
