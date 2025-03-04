@@ -12,8 +12,6 @@ $ xrandr --output HDMI-1 --rotate inverted
 
 Afterwards you can persist the setting in the display settings of the user interface.
 
-
-
 ## Enable Neopixel
 
 The GifyBox uses Neopixel stripes for the visualization of the process.
@@ -23,7 +21,7 @@ Due to the fact that the library used for the Neopixel control (`rpi_ws281x`) us
 Create a file `/etc/modprobe.d/snd-blacklist.conf` with the following content `blacklist snd_bcm2835`.
 
 ```console
-$ sudo echo "blacklist snd_bcm2835" > /etc/modprobe.d/snd-blacklist.conf
+sudo echo "blacklist snd_bcm2835" > /etc/modprobe.d/snd-blacklist.conf
 ```
 
 
@@ -65,24 +63,22 @@ Install the following packages:
 * swig
 * viewnior
 * graphicsmagick
+* libopencv-dev
+* python3-opencv
 
 ```console
-$ sudo apt update
-$ sudo apt install build-essential git scons swig viewnior graphicsmagick libopencv-dev python3-opencv
+sudo apt update
+sudo apt install build-essential git scons swig viewnior graphicsmagick libopencv-dev python3-opencv
 ```
-
-Install opencv
-$ sudo apt-get install libopencv-dev
-$ sudo apt-get install python3-opencv
 
 ## Install the GifyBox software
 
 Install the software from the GitHub repository.
 
 ```console
-$ cd ~
-$ git clone https://github.com/informatik-mannheim/gify-box.git
-$ cd gify-box
+cd ~
+git clone https://github.com/informatik-mannheim/gify-box.git
+cd gify-box
 ```
 
 ## Setup the python virtual environment
@@ -108,15 +104,15 @@ source venv/bin/activate
 * rpi_ws281x
 
 ```console
-$ pip install qrcode[pil] imageio pyserial requests Pillow rpi_ws281x
+pip install qrcode[pil] imageio pyserial requests Pillow rpi_ws281x
 ```
 
 ## Start the software on the box:
 The software client must be run as *root* to have access to the hardware, therefore you can use the starter script in the main directory of the project. Although, it is for the client only, we placed it there to make running the client as easy as possible.
 
 ```
-$ cd gify-box
-$ ./launcher.sh
+cd gify-box
+./launcher.sh
 ```
 
 
