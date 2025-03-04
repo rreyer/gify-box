@@ -43,7 +43,7 @@ PINBTN = 23
 
 # Picture configuration
 PICTURE_COUNT   = 5
-RESOLUTION      = (2048, 1536) # needs to be 4:3
+RESOLUTION      = (1024, 768) # needs to be 4:3
 
 # Picture wait delays
 COMPLIMENT_WAIT = 0.8  # seconds
