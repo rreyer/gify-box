@@ -28,7 +28,7 @@ from libcamera import Transform
 WEBSERVER_URL = 'https://gify.robin-reyer.de/upload.php'
 
 PREVIEW_WIDTH = 1280
-PREVIEW_HEIGHT = 720 # needs to be 4:3 for opencv text to work
+PREVIEW_HEIGHT = 960 # needs to be 4:3 for opencv text to work
 
 # LED strip configuration. #1 is at button, #2 at the camera
 LED_COUNT          = 8       # Number of LED pixels.
@@ -44,7 +44,7 @@ PINBTN = 23
 
 # Picture configuration
 PICTURE_COUNT   = 5
-RESOLUTION      = (1280, 720) # needs to be 4:3
+RESOLUTION      = (1280, 960) # needs to be 4:3
 
 # Picture wait delays
 COMPLIMENT_WAIT = 0.8  # seconds
