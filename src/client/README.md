@@ -12,6 +12,10 @@ $ xrandr --output HDMI-1 --rotate inverted
 
 Afterwards you can persist the setting in the display settings of the user interface.
 
+## Taskbar
+To enable the fullscreen preview later on, set the taskbar position to the bottom of the display. 
+Right click the taskbar, select "Taskbar Preferences" and change the position from Top to Bottom. Additionally, change the size to small (16x16). 
+
 ## Enable Neopixel
 
 The GifyBox uses Neopixel stripes for the visualization of the process.

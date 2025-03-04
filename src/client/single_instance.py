@@ -20,6 +20,7 @@ import subprocess
 import print_qr as at
 import threading
 import numpy as np
+from libcamera import Transform
 
 ### !! VAR DEFINITIONS !! ###
 
@@ -209,7 +210,7 @@ config = camera.create_preview_configuration({"size": RESOLUTION})
 
 # start the camera preview and show the ok color w/ animation
 camera.configure(config)
-camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
+camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH, transform=Transform(hflip=1))
 camera.start()
 color_wipe(strip, COLOR_OK)
 camera_print_text(camera, CAMERA_TEXTVAL_START)
@@ -317,7 +318,7 @@ while True:
     sleep(REPLAY_WAIT)
 
     # start the camera preview and close the gif viewer
-    camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH)
+    camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH, transform=Transform(hflip=1))
     camera.start()
     p.terminate()
     p.wait()
