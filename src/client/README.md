@@ -27,9 +27,9 @@ $ sudo echo "blacklist snd_bcm2835" > /etc/modprobe.d/snd-blacklist.conf
 ```
 
 
-### Raspberry PI 3
+### Raspberry PI 3 / 4
 
-If your are using a Raspberry PI 3, the serial interface is not readily available, but you need to change some configuration options. The reason is that the Bluetooth chip uses the same UART component. Therefore, you have to disable Bluetooth to gain access to the RS232 port on `/dev/serial0`.
+If your are using a Raspberry PI 3 or 4, the serial interface is not readily available, but you need to change some configuration options. The reason is that the Bluetooth chip uses the same UART component. Therefore, you have to disable Bluetooth to gain access to the RS232 port on `/dev/serial0`.
 
 Please add the following lines to the end of the file `/boot/config.txt`:
 
