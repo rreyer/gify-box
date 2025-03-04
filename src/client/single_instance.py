@@ -24,7 +24,7 @@ import numpy as np
 ### !! VAR DEFINITIONS !! ###
 
 # Web server upload script. Change this to your server's address
-WEBSERVER_URL = 'http://gify.robin-reyer.de/upload.php'
+WEBSERVER_URL = 'https://gify.robin-reyer.de/upload.php'
 
 PREVIEW_WIDTH = 1024
 PREVIEW_HEIGHT = 768 # needs to be 4:3 for opencv text to work
