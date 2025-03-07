@@ -19,18 +19,17 @@ Install the following additional packages:
 * imagemagick
 
 ```console
-$ sudo apt update
-$ sudo apt install php-imagick imagemagick
+sudo apt update
+sudo apt install php-imagick imagemagick
 ```
 
-TODO: IMAGICK AKTIVIEREN! mit phpenmod imagick
 ## Install the Software
-
+ 
 Install the software from the GitHub repository.
 
 ```console
-$ cd
-$ git clone https://github.com/informatik-mannheim/gify-box.git
+cd
+git clone https://github.com/informatik-mannheim/gify-box.git
 ```
 
 Copy the directory `src/server` to the web root of your server, e.g. `/var/www/gifybox`. Configure the web server to serve the directory.
@@ -41,7 +40,7 @@ Copy the directory `src/server` to the web root of your server, e.g. `/var/www/g
 Ensure that the `uploads` directory is writeable by the web server. Therefore execute the following command:
 
 ```console
-$ cd /var/www/gifybox
-$ sudo chown www-data uploads
-$ sudo chmod ug+rwx uplods
+cd /var/www/gifybox
+sudo chown www-data uploads
+sudo chmod ug+rwx uplods
 ```

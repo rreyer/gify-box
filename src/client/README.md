@@ -1,13 +1,13 @@
 # Installation
 
-This document describes the installation of the GifyBox on a Raspberry PI. After installing the operating system, some additional steps are required.
+This document describes the installation of the GifyBox on a Raspberry PI with Raspberry Pi OS (Bookworm). After installing the operating system, some additional steps are required.
 
 ## Display Orientation
 
 With the newest Raspian versions, you can no longer change the display orientation using the `/boot/config.txt` file but have to do it with the `xrand` command.
 
 ```console
-$ xrandr --output HDMI-1 --rotate inverted
+xrandr --output HDMI-1 --rotate inverted
 ```
 
 Afterwards you can persist the setting in the display settings of the user interface.
@@ -31,7 +31,7 @@ sudo echo "blacklist snd_bcm2835" > /etc/modprobe.d/snd-blacklist.conf
 
 ### Raspberry PI 3 / 4
 
-If your are using a Raspberry PI 3 or 4, the serial interface is not readily available, but you need to change some configuration options. The reason is that the Bluetooth chip uses the same UART component. Therefore, you have to disable Bluetooth to gain access to the RS232 port on `/dev/serial0`.
+If your are using a Raspberry PI 3 or 4, the serial interface is not readily available and you need to change some configuration options. The reason is that the Bluetooth chip uses the same UART component. Therefore, you have to disable Bluetooth to gain access to the RS232 port on `/dev/serial0`.
 
 Please add the following lines to the end of the file `/boot/firmware/config.txt`:
 
@@ -81,24 +81,26 @@ Install the software from the GitHub repository.
 ```console
 cd ~
 git clone https://github.com/informatik-mannheim/gify-box.git
-cd gify-box
 ```
 
 ## Setup the python virtual environment
+Starting in Raspberry Pi OS Bookworm, packages installed via pip must be installed into a Python virtual environment (venv).
+
 Navigate into the cloned gify-box directory.
 Create the virtual environment:
 ```console
+cd gify-box
 python -m venv venv --system-site-packages 
 ```
 
-Activate the virtual environment:
+## Install the required Python packages:
+
+First, activate the previously created virtual environment:
 ```console
 source venv/bin/activate
 ```
 
-
-## Install the required Python packages:
-
+Then install the required Python packages:
 * qrcode
 * imagio
 * pyserial

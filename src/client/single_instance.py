@@ -2,8 +2,6 @@
 """
 Main program for the Gify-Box.
 
-This program is currently running with Python 2.
-
 https://github.com/informatik-mannheim/gify-box
 """
 
@@ -201,26 +199,16 @@ def keystroke_watchdog():
 camera = picamera2.Picamera2()
 
 config = camera.create_preview_configuration({"size": RESOLUTION})
-#camera.rotation = 180
-
-# turn off that red camera led
-#camera.led = False
-
-# set camera annotation text color
-#camera.annotate_foreground = CAMERA_TEXTCOLOR
 
 # start the camera preview and show the ok color w/ animation
 camera.configure(config)
-camera.start_preview(Preview.QT, x=-120, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH, transform=Transform(hflip=1))
+camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH, transform=Transform(hflip=1))
 camera.start()
 color_wipe(strip, COLOR_OK)
 camera_print_text(camera, CAMERA_TEXTVAL_START)
 
 # get the hardware button
 button = Button(PINBTN)
-
-# start the serial connection
-#ser = serial.Serial(port='/dev/ttyACM0', baudrate=19200)
 
 # get the data file and read the current round from there so we dont overwrite stuff
 mround = 0
@@ -341,6 +329,5 @@ while True:
 
     # Join upload thread
     upload_thread.join()
-
 
 ### !! BUSINESS LOGIC DONE !! ###
