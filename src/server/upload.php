@@ -47,8 +47,8 @@
 		$animation->writeImages($uploaddir.'/animation.gif', true);
 
 		// generate MP4
-		exec('convert -antialias -delay 1x5 '.$uploadroot.'/'.$timeId.'/*.jpg '.$uploadroot.'/'.$timeId.'/animation.mp4');
-
+		#exec('convert -antialias -delay 1x5 '.$uploadroot.'/'.$timeId.'/*.jpg '.$uploadroot.'/'.$timeId.'/animation.mp4');
+		exec('ffmpeg -framerate 1 -i' .$uploadroot.'/'.$timeId.'/image%0d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p '.$uploadroot.'/'.$timeId.'/animation.mp4');
 		// print server URI, the "y" for the detail view route and id for the new gif
 		echo 'http'. (($_SERVER['SERVER_PORT'] == '443') ? 's' : '') .'://'. $_SERVER['SERVER_NAME'] .'/y';
 		echo $timeId;

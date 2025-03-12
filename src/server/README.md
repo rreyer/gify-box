@@ -17,10 +17,11 @@ Install the following additional packages:
 
 * php-imagick
 * imagemagick
+* ffmpeg
 
 ```console
 sudo apt update
-sudo apt install php-imagick imagemagick
+sudo apt install php-imagick imagemagick ffmpeg
 ```
 
 ## Install the Software
