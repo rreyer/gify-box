@@ -7,21 +7,17 @@ This document describes the configuration of the server for the GifyBox.
 The server part uses PHP and a web server, normally Apache. We don't provide installation instructions here.
 
 Required apache setup:
-Add Server name to /etc/apache2/apache2.conf
-Set AllowOverride All for the /var/www directory at the bottom of apache2.conf
-Enable Rewrite Mod for Apache2 with a2enmod rewrite
-
-
+* Add Server name to /etc/apache2/apache2.conf
+* Set AllowOverride All for the /var/www directory at the bottom of /etc/apache2/apache2.conf
+* Enable Rewrite Mod for Apache2 with ```a2enmod rewrite```
 
 Install the following additional packages:
 
-* php-imagick
-* imagemagick
 * ffmpeg
 
 ```console
 sudo apt update
-sudo apt install php-imagick imagemagick ffmpeg
+sudo apt install ffmpeg
 ```
 
 ## Install the Software
@@ -43,5 +39,5 @@ Ensure that the `uploads` directory is writeable by the web server. Therefore ex
 ```console
 cd /var/www/gifybox
 sudo chown www-data uploads
-sudo chmod ug+rwx uplods
+sudo chmod ug+rwx uploads
 ```
