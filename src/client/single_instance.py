@@ -139,7 +139,7 @@ def color_clear(strip_to_use, color):
 def camera_print_text(camera_to_use, text):
     if not text:
         text = ''
-    overlay = np.zeros((PREVIEW_WIDTH, PREVIEW_HEIGHT, 4), dtype=np.uint8)
+    overlay = np.zeros((PREVIEW_HEIGHT, PREVIEW_WIDTH, 4), dtype=np.uint8)
     text_size, _ = cv2.getTextSize(text, CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTTHICKNESS)
     text_w, text_h = text_size
 
