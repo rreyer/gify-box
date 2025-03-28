@@ -148,8 +148,7 @@ def camera_print_text(camera_to_use, text):
     textOriginY = 20 + text_h + CAMERA_TEXTSCALE - 1
     rectangleBoundsTopLeft = ((textOriginX - padding, textOriginY - padding - text_h))
     rectangleBoundsBottomRight = ((textOriginX + text_w + padding, textOriginY + padding))
-    
-    print(rectangleBoundsTopLeft, rectangleBoundsBottomRight)
+
 
     cv2.rectangle(overlay, rectangleBoundsTopLeft, rectangleBoundsBottomRight , CAMERA_TEXTBACKGROUNDCOLOR, -1)
     cv2.putText(overlay, text, (textOriginX, textOriginY), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
