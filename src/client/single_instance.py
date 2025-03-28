@@ -25,8 +25,8 @@ from libcamera import Transform
 # Web server upload script. Change this to your server's address
 WEBSERVER_URL = 'https://gify.robin-reyer.de/upload.php'
 
-PREVIEW_WIDTH = 1280
-PREVIEW_HEIGHT = 720 # needs to be 4:3 for opencv text to work
+PREVIEW_WIDTH = 800
+PREVIEW_HEIGHT = 600 # needs to be 4:3 for opencv text to work
 
 # LED strip configuration. #1 is at button, #2 at the camera
 LED_COUNT          = 8       # Number of LED pixels.
