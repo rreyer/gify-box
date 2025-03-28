@@ -42,7 +42,7 @@ PINBTN = 23
 
 # Picture configuration
 PICTURE_COUNT   = 5
-RESOLUTION      = (1280, 960) # needs to be 4:3
+RESOLUTION      = (PREVIEW_WIDTH, PREVIEW_HEIGHT) # needs to be 4:3
 
 # Picture wait delays
 COMPLIMENT_WAIT = 0.8  # seconds
@@ -79,7 +79,6 @@ OVERLAYIMAGE_OFFSET = (30, 10)
 # Camera text annotations
 CAMERA_TEXTCOLOR = (0, 0, 0, 255)
 CAMERA_TEXTBACKGROUNDCOLOR = (255, 255, 255, 180)
-CAMERA_TEXTORIGIN = (0, 0)
 CAMERA_TEXTFONT = cv2.FONT_HERSHEY_DUPLEX
 CAMERA_TEXTSCALE = 1
 CAMERA_TEXTTHICKNESS = 2
@@ -143,9 +142,15 @@ def camera_print_text(camera_to_use, text):
     overlay = np.zeros((PREVIEW_WIDTH, PREVIEW_HEIGHT, 4), dtype=np.uint8)
     text_size, _ = cv2.getTextSize(text, CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTTHICKNESS)
     text_w, text_h = text_size
-    x, y = CAMERA_TEXTORIGIN
-    cv2.rectangle(overlay, CAMERA_TEXTORIGIN, (x + text_w, y + text_h), CAMERA_TEXTBACKGROUNDCOLOR, -1)
-    cv2.putText(overlay, text, (x, y + text_h + CAMERA_TEXTSCALE - 1), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
+
+    padding=10
+    textOriginX = round((PREVIEW_WIDTH - text_w) / 2)
+    textOriginY = 20 + text_h + CAMERA_TEXTSCALE - 1
+    rectangleBoundsTopLeft = ((textOriginX - padding, textOriginY - padding - text_h))
+    rectangleBoundsBottomRight = ((textOriginX + text_w + padding, textOriginY + padding))
+    
+    cv2.rectangle(overlay, rectangleBoundsTopLeft, rectangleBoundsBottomRight , CAMERA_TEXTBACKGROUNDCOLOR, -1)
+    cv2.putText(overlay, text, (textOriginX, textOriginY), CAMERA_TEXTFONT, CAMERA_TEXTSCALE, CAMERA_TEXTCOLOR, CAMERA_TEXTTHICKNESS)
     
     camera_to_use.set_overlay(overlay)
 
