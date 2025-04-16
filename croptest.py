@@ -7,6 +7,8 @@ picam2 = Picamera2()
 # Kamera-Konfiguration abrufen
 config = picam2.create_preview_configuration()
 
+print(picam2.camera_controls["ScalerCrop"])
+
 # Hole aktuelle sensor size (z. B. 2304x1296 bei HQ-Kamera)
 sensor_resolution = config["main"]["size"]
 sensor_width, sensor_height = sensor_resolution
