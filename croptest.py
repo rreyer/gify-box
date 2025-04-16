@@ -35,7 +35,7 @@ config = picam2.create_preview_configuration(controls={"ScalerCrop": (crop_x, cr
 picam2.configure(config)
 
 # Starte Preview
-camera.start_preview(Preview.QT, x=0, y=0, height=1080, width=1920, transform=Transform(hflip=1))
+picam2.start_preview(Preview.QT, x=0, y=0, height=1080, width=1920, transform=Transform(hflip=1))
 picam2.start()
 
 time.sleep(100)  # Oder Endlosschleife
