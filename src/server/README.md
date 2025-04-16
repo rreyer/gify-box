@@ -41,3 +41,6 @@ cd /var/www/gifybox
 sudo chown www-data uploads
 sudo chmod ug+rwx uploads
 ```
+
+# Useful Links
+[How to generate ssl certificate for apache2 with certbot](https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04)
