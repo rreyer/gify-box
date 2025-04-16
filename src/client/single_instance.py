@@ -307,14 +307,14 @@ while True:
     # starting the gif viewer takes some time, so dont close the preview right away
     sleep(2)
     color_wipe(strip, COLOR_REPLAY)
-    camera.stop_preview()
+    #camera.stop_preview()
 
     # wait x seconds while showing the replay
     sleep(REPLAY_WAIT)
 
     # start the camera preview and close the gif viewer
-    camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH, transform=Transform(hflip=1))
-    camera.start()
+    #camera.start_preview(Preview.QT, x=0, y=0, height=PREVIEW_HEIGHT, width=PREVIEW_WIDTH, transform=Transform(hflip=1))
+    #camera.start()
     p.terminate()
     p.wait()
 
