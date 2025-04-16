@@ -1,4 +1,5 @@
 from picamera2 import Picamera2, Preview
+import libcamera
 import time
 
 picam2 = Picamera2()
@@ -24,7 +25,7 @@ crop_x = (sensor_width - crop_width) // 2
 crop_y = (sensor_height - crop_height) // 2
 
 # Crop setzen
-config["transform"] = picam2.Transform(hflip=0, vflip=0)
+config["transform"] = libcamera.Transform(hflip=0, vflip=0)
 config["main"]["crop"] = (crop_x, crop_y, crop_width, crop_height)
 
 # Konfiguration anwenden
