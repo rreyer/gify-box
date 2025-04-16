@@ -13,6 +13,8 @@ print(picam2.camera_controls["ScalerCrop"])
 sensor_resolution = config["main"]["size"]
 sensor_width, sensor_height = sensor_resolution
 
+print(sensor_resolution, sensor_width, sensor_height)
+
 # Zielverhältnis 16:9 berechnen (Crop)
 crop_width = sensor_width
 crop_height = int(sensor_width * 9 / 16)
