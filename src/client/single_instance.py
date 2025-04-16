@@ -23,7 +23,7 @@ from libcamera import Transform
 ### !! VAR DEFINITIONS !! ###
 
 # Web server upload script. Change this to your server's address
-WEBSERVER_URL = 'https://gify.robin-reyer.de/upload.php'
+WEBSERVER_URL = 'https://gify.inno-space.de/upload.php'
 
 PREVIEW_WIDTH = 1920
 PREVIEW_HEIGHT = 1080 # needs to be 4:3 for opencv text to work
