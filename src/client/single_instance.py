@@ -204,7 +204,8 @@ def keystroke_watchdog():
 # start the camera
 camera = picamera2.Picamera2()
 
-config = camera.create_preview_configuration({"size": RESOLUTION})
+#config = camera.create_preview_configuration({"size": RESOLUTION})
+config = camera.create_preview_configuration()
 
 # start the camera preview and show the ok color w/ animation
 camera.configure(config)
