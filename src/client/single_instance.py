@@ -42,7 +42,7 @@ PINBTN = 23
 
 # Picture configuration
 PICTURE_COUNT   = 5
-RESOLUTION      = (PREVIEW_WIDTH, PREVIEW_HEIGHT) # needs to be 4:3
+RESOLUTION      = (1280, 720) # needs to be 16:9
 
 # Picture wait delays
 COMPLIMENT_WAIT = 0.8  # seconds
@@ -204,8 +204,8 @@ def keystroke_watchdog():
 # start the camera
 camera = picamera2.Picamera2()
 
-#config = camera.create_preview_configuration({"size": RESOLUTION})
-config = camera.create_preview_configuration()
+config = camera.create_preview_configuration({"size": RESOLUTION})
+#config = camera.create_preview_configuration()
 
 # start the camera preview and show the ok color w/ animation
 camera.configure(config)
