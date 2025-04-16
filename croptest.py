@@ -27,9 +27,8 @@ crop_x = (sensor_width - crop_width) // 2
 crop_y = (sensor_height - crop_height) // 2
 
 # Crop setzen
-config["transform"] = libcamera.Transform(hflip=0, vflip=0)
-config["main"]["crop"] = (crop_x, crop_y, crop_width, crop_height)
 
+config = picam2.create_preview_configuration(controls={"ScalerCrop": (crop_x, crop_y, crop_width, crop_height)})
 # Konfiguration anwenden
 picam2.configure(config)
 
