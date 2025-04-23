@@ -1,7 +1,7 @@
 #!/bin/sh 
 cd /home/innospace/gify-box/src/client
 
-#export DISPLAY=:0
+export DISPLAY=:0
 
 # Disable screen saver and screen blanking
 xset s off
