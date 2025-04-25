@@ -20,6 +20,8 @@ import threading
 import numpy as np
 from libcamera import Transform
 
+os.environ["WAYLAND_DISPLAY"] = "wayland-0"
+
 ### !! VAR DEFINITIONS !! ###
 
 # Web server upload script. Change this to your server's address
