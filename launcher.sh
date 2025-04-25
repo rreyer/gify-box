@@ -1,11 +1,7 @@
 #!/bin/bash 
 
 echo "$(date) - Startversuch" >> /home/innospace/gify-box/log.log
-sleep 5
 
-export DISPLAY=:0
-export XAUTHORITY=/home/innospace/.Xauthority
-export XDG_RUNTIME_DIR=/run/user/1000
 
 # Disable screen saver and screen blanking
 xset s off
