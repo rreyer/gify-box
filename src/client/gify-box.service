@@ -1,0 +1,14 @@
+[Unit]
+Description=Picamera2 Preview mit GUI
+After=graphical.target
+
+[Service]
+ExecStart=/home/innospace/gify-box/venv/bin/python /home/innospace/gify-box/launcher.sh >> /home/innospace/gify-box/log.log 2>&1
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+User=innospace
+Group=innospace
+Restart=no
+
+[Install]
+WantedBy=graphical.target
